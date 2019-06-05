@@ -1,0 +1,34 @@
+---
+title: "Untitled"
+author: "Shylock"
+date: "5/20/2019"
+output:
+  word_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.cap = TRUE)
+library(tidyverse)
+library(readxl)
+library(janitor)
+library(compareGroups)
+
+
+library(readxl)
+raw_001 <- read_excel("raw_001.xlsx") %>% 
+  clean_names()
+```
+## R Markdown
+
+
+```{r, echo=FALSE}
+hhdemo <- raw_001 %>% 
+  select(5, 10, 12:23)
+a <- descrTable(a_a2 ~ ., hhdemo, hide.no="no", show.all = TRUE)
+export2md(a, strip = TRUE, first = TRUE, 
+          header.background = "blue", header.color = "white", 
+          caption = "Household summary demographics")
+
+
+```
